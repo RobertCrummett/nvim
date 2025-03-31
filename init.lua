@@ -43,6 +43,15 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"ibhagwan/fzf-lua",
+		},
+		config = true,
+	},
 })
 
 vim.opt.termguicolors = true
