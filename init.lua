@@ -22,13 +22,26 @@ require("lazy").setup({
 			local configs = require("nvim-treesitter.configs")
 
 			configs.setup({
-				ensure_installed = { "c", "cpp", "fortran", "markdown", "make", "cmake", "json", "python", "latex", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+				ensure_installed = { "c", "cpp", "fortran", "markdown", "make", "cmake", "json", "python", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
 				sync_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },  
 				additional_vim_regex_highlighting = false,
 			})
 		end
+	},
+	{
+		"ibhagwan/fzf-lua",
+		dependencies = {"nvim-tree/nvim-web-devicons"},
+		config = function()
+			local configs = require("fzf-lua")
+
+			configs.setup({
+				git_icons = false,
+				file_icons = false,
+				color_icons = false,
+			})
+		end,
 	},
 })
 
