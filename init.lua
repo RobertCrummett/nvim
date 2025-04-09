@@ -22,7 +22,7 @@ require("lazy").setup({
 			local configs = require("nvim-treesitter.configs")
 
 			configs.setup({
-				ensure_installed = { "c", "cpp", "fortran", "markdown", "make", "cmake", "json", "python", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+				ensure_installed = { "c", "cpp", "fortran", "matlab", "markdown", "make", "cmake", "json", "python", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
 				sync_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },  
@@ -44,13 +44,16 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"sindrets/diffview.nvim",
-			"ibhagwan/fzf-lua",
-		},
-		config = true,
+		"tpope/vim-fugitive",
+	},
+	{
+		"takac/vim-hardtime",
+		config = function()
+			vim.g.hardtime_default_on = true
+			vim.g.hardtime_allow_different_key = true
+			vim.g.hardtime_showmsg = true
+			vim.cmd [[HardTimeOn]]
+		end,
 	},
 })
 
