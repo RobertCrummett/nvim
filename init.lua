@@ -47,14 +47,12 @@ require("lazy").setup({
 		"tpope/vim-fugitive",
 	},
 	{
-		"takac/vim-hardtime",
-		config = function()
-			vim.g.hardtime_default_on = true
-			vim.g.hardtime_allow_different_key = true
-			vim.g.hardtime_showmsg = true
-			vim.cmd [[HardTimeOn]]
-		end,
+		"m4xshen/hardtime.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {}
 	},
 })
 
 vim.opt.termguicolors = true
+vim.opt.relativenumber = true
+vim.opt.number = true
