@@ -49,11 +49,14 @@ require("lazy").setup({
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
-		opts = {}
+		opts = {},
+	},
+	{
+		'Mofiqul/vscode.nvim',
 	},
 })
 
 vim.opt.termguicolors = true
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.cmd.colorscheme("raider")
+vim.cmd.colorscheme("vscode")
