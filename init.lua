@@ -22,7 +22,7 @@ require("lazy").setup({
 			local configs = require("nvim-treesitter.configs")
 
 			configs.setup({
-				ensure_installed = { "c", "cpp", "fortran", "matlab", "markdown", "make", "cmake", "json", "python", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+				ensure_installed = { "bash", "html", "css", "java", "javascript", "c", "cpp", "fortran", "matlab", "markdown", "make", "cmake", "json", "python", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
 				sync_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },  
@@ -46,17 +46,17 @@ require("lazy").setup({
 	{
 		"tpope/vim-fugitive",
 	},
-	{
-		"m4xshen/hardtime.nvim",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		opts = {},
-	},
+	-- {
+	-- 	"m4xshen/hardtime.nvim",
+	-- 	dependencies = { "MunifTanjim/nui.nvim" },
+	-- 	opts = {},
+	-- },
 	{
 		'Mofiqul/vscode.nvim',
 	},
 })
 
 vim.opt.termguicolors = true
-vim.opt.relativenumber = true
-vim.opt.number = true
-vim.cmd.colorscheme("vscode")
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
