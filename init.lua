@@ -60,3 +60,11 @@ vim.opt.termguicolors = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+
+if vim.fn.argc() == 0 then
+    if vim.fn.has("macunix") then
+        vim.api.nvim_set_current_dir([[ ~ ]])
+    else
+        vim.api.nvim_set_current_dir([[ C:\Users\rncru\ ]])
+    end
+end
