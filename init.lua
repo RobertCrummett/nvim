@@ -46,11 +46,6 @@ require("lazy").setup({
 	{
 		"tpope/vim-fugitive",
 	},
-	-- {
-	-- 	"m4xshen/hardtime.nvim",
-	-- 	dependencies = { "MunifTanjim/nui.nvim" },
-	-- 	opts = {},
-	-- },
 	{
         'Mofiqul/vscode.nvim',
     },
