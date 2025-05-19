@@ -51,9 +51,14 @@ require("lazy").setup({
 	-- 	dependencies = { "MunifTanjim/nui.nvim" },
 	-- 	opts = {},
 	-- },
-	{
-		'Mofiqul/vscode.nvim',
-	},
+    {
+        'Mofiqul/vscode.nvim',
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        lazy = false,
+    },
 })
 
 vim.opt.termguicolors = true
