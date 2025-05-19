@@ -68,14 +68,65 @@ require("lazy").setup({
     },
     {
         'mason-org/mason-lspconfig.nvim',
-        dependencies = { 'mason.nvim' },
+        dependencies = {
+            { 'mason-org/mason.nvim', opts = {} },
+            'neovim/nvim-lspconfig',
+        },
         config = function()
             require('mason-lspconfig').setup()
         end,
     },
+    {
+        'kshenoy/vim-signature',
+    },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lualine').setup({
+                options = {
+                    theme = 'auto',
+                    icons_enabled = true,
+                    component_separators = '|',
+                    section_separators = { left = '', right = '' },
+                },
+                sections = {
+                    lualine_a = { 'mode' },
+                    lualine_b = {
+                        'branch',
+                        {
+                            'diff',
+                            symbols = {
+                                added = ' ',
+                                modified = ' ',
+                                removed = ' ',
+                            },
+                        },
+                        'diagnostics',
+                    },
+                    lualine_c = { 'filename' },
+                    lualine_x = { 'filetype' },
+                    lualine_y = { 'progress' },
+                    lualine_z = { 'location' }
+                },
+            })
+        end,
+    },
 })
 
-vim.opt.termguicolors = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.o.termguicolors = true
+
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = "number"
+
+vim.o.autoindent = true
+
+vim.cmd [[
+    syntax enable
+    colorscheme lunaperche
+]]
