@@ -22,7 +22,7 @@ require("lazy").setup({
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
-                ensure_installed = { "bash", "html", "css", "java", "javascript", "c", "cpp", "fortran", "matlab", "markdown", "make", "cmake", "json", "python", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+                ensure_installed = {};
                 auto_install = true,
                 sync_install = false,
                 ignore_install = {},
@@ -131,3 +131,17 @@ vim.cmd [[
     syntax enable
     colorscheme lunaperche
 ]]
+
+vim.g.mapleader = " "
+
+vim.keymap.set("n", "<Leader>o", ":Oil<CR>", { desc = "Open file explorer" })
+
+vim.keymap.set("n", "<Leader>ds", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+
+local virtual_text_enabled = true
+vim.keymap.set("n", "<leader>dv", function()
+    vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+end, { desc = "Toggle diagnostics virtual text" })
