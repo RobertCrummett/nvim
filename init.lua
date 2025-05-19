@@ -18,14 +18,17 @@ require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = function () 
+        config = function ()
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
                 ensure_installed = { "bash", "html", "css", "java", "javascript", "c", "cpp", "fortran", "matlab", "markdown", "make", "cmake", "json", "python", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+                auto_install = true,
                 sync_install = false,
+                ignore_install = {},
+                modules = {},
                 highlight = { enable = true },
-                indent = { enable = true },  
+                indent = { enable = true },
                 additional_vim_regex_highlighting = false,
             })
         end
@@ -54,17 +57,25 @@ require("lazy").setup({
         opts = {},
         lazy = false,
     },
+    {
+        'neovim/nvim-lspconfig',
+    },
+    {
+        'mason-org/mason.nvim',
+        config = function()
+            require('mason').setup()
+        end,
+    },
+    {
+        'mason-org/mason-lspconfig.nvim',
+        dependencies = { 'mason.nvim' },
+        config = function()
+            require('mason-lspconfig').setup()
+        end,
+    },
 })
 
 vim.opt.termguicolors = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-
-if vim.fn.argc() == 0 then
-    if vim.fn.has("macunix") then
-        vim.api.nvim_set_current_dir([[ ~ ]])
-    else
-        vim.api.nvim_set_current_dir([[ C:\Users\rncru\ ]])
-    end
-end
