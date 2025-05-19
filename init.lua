@@ -112,6 +112,9 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        'lewis6991/gitsigns.nvim',
+    },
 })
 
 vim.o.termguicolors = true
@@ -120,9 +123,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.signcolumn = "number"
+vim.o.signcolumn = "yes"
 
 vim.o.autoindent = true
 
