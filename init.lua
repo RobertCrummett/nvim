@@ -94,30 +94,41 @@ require("lazy").setup({
                     lualine_a = { 'mode' },
                     lualine_b = {
                         'branch',
-                        {
-                            'diff',
-                            symbols = {
-                                added = ' ',
-                                modified = ' ',
-                                removed = ' ',
-                            },
-                        },
-                        'diagnostics',
-                    },
-                    lualine_c = { 'filename' },
-                    lualine_x = { 'filetype' },
-                    lualine_y = { 'progress' },
-                    lualine_z = { 'location' }
-                },
-            })
-        end,
-    },
-    {
-        'lewis6991/gitsigns.nvim',
-    },
+						{
+							'diff',
+							symbols = {
+								added = ' ',
+								modified = ' ',
+								removed = ' ',
+							},
+						},
+						'diagnostics',
+					},
+					lualine_c = { 'filename' },
+					lualine_x = { 'filetype' },
+					lualine_y = { 'progress' },
+					lualine_z = { 'location' }
+				},
+			})
+		end,
+	},
+	{
+		'lewis6991/gitsigns.nvim',
+	},
+	{
+		'neomake/neomake',
+	},
+	{
+		'hrsh7th/nvim-cmp'
+	},
+	{
+		'hrsh7th/cmp-nvim-lsp'
+	},
 })
 
 vim.o.termguicolors = true
+
+vim.o.mouse = "a"
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
@@ -143,5 +154,5 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" }
 
 local virtual_text_enabled = true
 vim.keymap.set("n", "<leader>dv", function()
-    vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+	vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
 end, { desc = "Toggle diagnostics virtual text" })
