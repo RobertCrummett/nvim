@@ -27,8 +27,8 @@ require('lazy').setup({
                 sync_install = false,
                 ignore_install = {},
                 modules = {},
-                highlight = { enable = true },
-                indent = { enable = true },
+                highlight = { enable = false },
+                indent = { enable = false },
                 additional_vim_regex_highlighting = false,
             })
         end
@@ -44,6 +44,9 @@ require('lazy').setup({
     },
     {
         'tpope/vim-endwise',
+    },
+    {
+        'tpope/vim-dispatch',
     },
     {
         'stevearc/oil.nvim',
@@ -73,48 +76,14 @@ require('lazy').setup({
         'kshenoy/vim-signature',
     },
     {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function()
-            require('lualine').setup({
-                options = {
-                    theme = 'auto',
-                    icons_enabled = true,
-                    component_separators = '|',
-                    section_separators = { left = '', right = '' },
-                },
-                sections = {
-                    lualine_a = { 'mode' },
-                    lualine_b = {
-                        'branch',
-						{
-							'diff',
-							symbols = {
-								added = ' ',
-								modified = ' ',
-								removed = ' ',
-							},
-						},
-						'diagnostics',
-					},
-					lualine_c = { 'filename' },
-					lualine_x = { 'filetype' },
-					lualine_y = { 'progress' },
-					lualine_z = { 'location' }
-				},
-			})
-		end,
-	},
-	{
-		'lewis6991/gitsigns.nvim',
-	},
-	{
-		'neomake/neomake',
-	},
+        'lewis6991/gitsigns.nvim',
+    },
 })
 
 vim.o.termguicolors = true
 vim.o.mouse = 'a'
+vim.o.wrap = false
+vim.o.laststatus = 0
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
