@@ -50,10 +50,11 @@ require('lazy').setup({
     },
     {
         'stevearc/oil.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {
             columns = {
                 'icon',
-                'permission',
+                'permissions',
                 'size',
                 'mtime',
             },
@@ -76,8 +77,17 @@ require('lazy').setup({
         'kshenoy/vim-signature',
     },
     {
-        'lewis6991/gitsigns.nvim',
+	    'lewis6991/gitsigns.nvim',
     },
+    {
+	    "folke/noice.nvim",
+	    event = "VeryLazy",
+	    opts = {},
+	    dependencies = {
+		    "MunifTanjim/nui.nvim",
+		    "rcarriga/nvim-notify",
+	    }
+    }
 })
 
 vim.o.termguicolors = true
