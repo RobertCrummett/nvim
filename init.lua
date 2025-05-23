@@ -14,6 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- TODO we need to do something
 require('lazy').setup({
     {
         'nvim-treesitter/nvim-treesitter',
@@ -50,7 +51,7 @@ require('lazy').setup({
     },
     {
         'stevearc/oil.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        dependencies = { "nvim-tree/nvim-web-devicons", opts = {}},
         opts = {
             columns = {
                 'icon',
@@ -59,17 +60,6 @@ require('lazy').setup({
                 'mtime',
             },
             delete_to_trash = true,
-            git = {
-                add = function(path)
-                    return true
-                end,
-                mv = function(src_path, dest_path)
-                    return true
-                end,
-                rm = function(path)
-                    return true
-                end,
-            },
         },
         lazy = false,
     },
@@ -82,12 +72,36 @@ require('lazy').setup({
     {
 	    "folke/noice.nvim",
 	    event = "VeryLazy",
-	    opts = {},
-	    dependencies = {
-		    "MunifTanjim/nui.nvim",
-		    "rcarriga/nvim-notify",
-	    }
-    }
+        opts = {
+            lsp = {
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                    ["cmp.entry.get_documentation"] = true,
+                },
+            },
+            presets = {
+                bottom_search = true,
+                command_palette = true,
+                long_message_to_split = true,
+                inc_rename = false,
+                lsp_doc_border = false,
+            },
+        },
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    {
+        'nvim-telescope/telescope.nvim', 
+        tag = '0.1.8',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+    },
 })
 
 vim.o.termguicolors = true
@@ -107,3 +121,11 @@ vim.cmd [[colorscheme default]]
 vim.g.mapleader = ' '
 
 vim.keymap.set('n', '<Leader>o', ':Oil<CR>', { desc = 'Open file explorer' })
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<Leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<Leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<Leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<Leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+require("telescope").load_extension("noice")
