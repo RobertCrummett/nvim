@@ -14,7 +14,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- TODO we need to do something
 require('lazy').setup({
     {
         'nvim-treesitter/nvim-treesitter',
@@ -51,7 +50,7 @@ require('lazy').setup({
     },
     {
         'stevearc/oil.nvim',
-        dependencies = { "nvim-tree/nvim-web-devicons", opts = {}},
+        dependencies = { 'nvim-tree/nvim-web-devicons', opts = {}},
         opts = {
             columns = {
                 'icon',
@@ -67,35 +66,30 @@ require('lazy').setup({
         'kshenoy/vim-signature',
     },
     {
-	    'lewis6991/gitsigns.nvim',
+        'lewis6991/gitsigns.nvim',
     },
     {
-	    "folke/noice.nvim",
-	    event = "VeryLazy",
+        'folke/noice.nvim',
+        event = 'VeryLazy',
         opts = {
-            lsp = {
-                override = {
-                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                    ["vim.lsp.util.stylize_markdown"] = true,
-                    ["cmp.entry.get_documentation"] = true,
-                },
-            },
             presets = {
                 bottom_search = true,
                 command_palette = true,
                 long_message_to_split = true,
-                inc_rename = false,
-                lsp_doc_border = false,
+                lsp_doc_border = true,
             },
         },
         dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
+            'MunifTanjim/nui.nvim',
+            { 'rcarriga/nvim-notify', opts = {
+                top_down = false,
+                timeout = 2500,
+            }},
         }
     },
     {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        'folke/todo-comments.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
     },
     {
         'nvim-telescope/telescope.nvim', 
@@ -128,4 +122,6 @@ vim.keymap.set('n', '<Leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<Leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<Leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
-require("telescope").load_extension("noice")
+require('telescope').load_extension('noice')
+
+vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', {desc = 'Dismiss Noice Message'})
