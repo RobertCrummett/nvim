@@ -101,6 +101,14 @@ require('lazy').setup({
         tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' },
     },
+    {
+        "slugbyte/lackluster.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd([[colorscheme lackluster]])
+        end,
+    },
 })
 
 vim.o.termguicolors = true
@@ -115,7 +123,6 @@ vim.o.expandtab = true
 vim.o.signcolumn = 'yes'
 
 vim.cmd [[syntax enable]]
-vim.cmd [[colorscheme default]]
 
 vim.g.mapleader = ' '
 
@@ -132,17 +139,28 @@ require('telescope').load_extension('noice')
 vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', {desc = 'Dismiss Noice Message'})
 
 -- https://lsp-zero.netlify.app/blog/lsp-config-overview.html
-vim.lsp.enable('luals')
-vim.lsp.enable('clangd')
-vim.lsp.enable('fortls')
-vim.lsp.enable('pyright')
-vim.lsp.enable('typescript-language-server')
-
 vim.diagnostic.config({
     virtual_text = false,
     signs = false,
     underline = false,
 })
+
+vim.lsp.config('*', {
+    capabilities = {
+        textDocument = {
+            semanticTokens = {
+                multilineTokenSupport = true,
+            }
+        }
+    },
+    root_markers = { '.git' },
+})
+
+vim.lsp.enable('luals')
+vim.lsp.enable('clangd')
+vim.lsp.enable('fortls')
+vim.lsp.enable('pyright')
+vim.lsp.enable('typescript-language-server')
 
 vim.api.nvim_create_user_command('DiagnosticToggle', function()
     local config = vim.diagnostic.config

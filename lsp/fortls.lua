@@ -1,4 +1,4 @@
 return {
-    cmd = 'fortls',
-    filetypes = {'f90', 'f95', 'f', 'for', 'ftn', 'f77', 'f03'},
+  cmd = { "fortls" },
+  filetypes = { "fortran", "f90", "f95", "f03", "f08", "f" },
 }
