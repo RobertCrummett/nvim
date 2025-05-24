@@ -34,16 +34,16 @@ require('lazy').setup({
         end
     },
     {
-        "NeogitOrg/neogit",
+        'NeogitOrg/neogit',
         dependencies = {
-            "nvim-lua/plenary.nvim",         -- required
-            "sindrets/diffview.nvim",        -- optional - Diff integration
+            'nvim-lua/plenary.nvim',         -- required
+            'sindrets/diffview.nvim',        -- optional - Diff integration
 
             -- Only one of these is needed.
-            "nvim-telescope/telescope.nvim", -- optional
-            "ibhagwan/fzf-lua",              -- optional
-            "echasnovski/mini.pick",         -- optional
-            "folke/snacks.nvim",             -- optional
+            'nvim-telescope/telescope.nvim', -- optional
+            'ibhagwan/fzf-lua',              -- optional
+            'echasnovski/mini.pick',         -- optional
+            'folke/snacks.nvim',             -- optional
         },
     },
     {
@@ -144,7 +144,7 @@ vim.diagnostic.config({
     underline = false,
 })
 
-vim.api.nvim_create_user_command("DiagnosticToggle", function()
+vim.api.nvim_create_user_command('DiagnosticToggle', function()
     local config = vim.diagnostic.config
     local vt = config().virtual_text
     config {
@@ -152,4 +152,4 @@ vim.api.nvim_create_user_command("DiagnosticToggle", function()
         signs = not vt,
         underline = not vt,
     }
-end, { desc = "Toggle diagnostics" })
+end, { desc = 'Toggle diagnostics' })
