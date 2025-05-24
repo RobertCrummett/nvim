@@ -34,7 +34,17 @@ require('lazy').setup({
         end
     },
     {
-        'tpope/vim-fugitive',
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",         -- required
+            "sindrets/diffview.nvim",        -- optional - Diff integration
+
+            -- Only one of these is needed.
+            "nvim-telescope/telescope.nvim", -- optional
+            "ibhagwan/fzf-lua",              -- optional
+            "echasnovski/mini.pick",         -- optional
+            "folke/snacks.nvim",             -- optional
+        },
     },
     {
         'tpope/vim-surround',
@@ -58,7 +68,6 @@ require('lazy').setup({
                 'size',
                 'mtime',
             },
-            delete_to_trash = true,
         },
         lazy = false,
     },
@@ -86,10 +95,6 @@ require('lazy').setup({
                 timeout = 2500,
             }},
         }
-    },
-    {
-        'folke/todo-comments.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' },
     },
     {
         'nvim-telescope/telescope.nvim', 
@@ -125,3 +130,26 @@ vim.keymap.set('n', '<Leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 require('telescope').load_extension('noice')
 
 vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', {desc = 'Dismiss Noice Message'})
+
+-- https://lsp-zero.netlify.app/blog/lsp-config-overview.html
+vim.lsp.enable('luals')
+vim.lsp.enable('clangd')
+vim.lsp.enable('fortls')
+vim.lsp.enable('pyright')
+vim.lsp.enable('typescript-language-server')
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = false,
+    underline = false,
+})
+
+vim.api.nvim_create_user_command("DiagnosticToggle", function()
+    local config = vim.diagnostic.config
+    local vt = config().virtual_text
+    config {
+        virtual_text = not vt,
+        signs = not vt,
+        underline = not vt,
+    }
+end, { desc = "Toggle diagnostics" })
