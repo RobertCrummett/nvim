@@ -78,25 +78,6 @@ require('lazy').setup({
 		'lewis6991/gitsigns.nvim',
 	},
 	{
-		'folke/noice.nvim',
-		event = 'VeryLazy',
-		opts = {
-			presets = {
-				bottom_search = true,
-				command_palette = true,
-				long_message_to_split = true,
-				lsp_doc_border = true,
-			},
-		},
-		dependencies = {
-			'MunifTanjim/nui.nvim',
-			{ 'rcarriga/nvim-notify', opts = {
-				top_down = false,
-				timeout = 2500,
-			}},
-		}
-	},
-	{
 		'nvim-telescope/telescope.nvim', 
 		tag = '0.1.8',
 		dependencies = { 'nvim-lua/plenary.nvim' },
@@ -133,8 +114,6 @@ vim.keymap.set('n', '<Leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<Leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<Leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<Leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-
-require('telescope').load_extension('noice')
 
 vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', {desc = 'Dismiss Noice Message'})
 
@@ -197,11 +176,9 @@ end
 vim.api.nvim_create_autocmd('BufEnter', {
 	callback = function()
 		if vim.fn.filereadable('CMakeLists.txt') == 1 then
-			if vim.fn.isdirectory('build') == 1 then
-				if vim.fn.executable('cmake') == 1 then
-					vim.o.makeprg = 'cmake --build build'
-					vim.o.errorformat = '%f:%l:%c: %m'
-				end
+			if vim.fn.executable('cmake') == 1 then
+				vim.o.makeprg = 'cmake --build build'
+				vim.o.errorformat = '%f:%l:%c: %m'
 			end
 		end
 	end,
