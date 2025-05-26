@@ -36,14 +36,9 @@ require('lazy').setup({
 	{
 		'NeogitOrg/neogit',
 		dependencies = {
-			'nvim-lua/plenary.nvim',         -- required
-			'sindrets/diffview.nvim',        -- optional - Diff integration
-
-			-- Only one of these is needed.
-			'nvim-telescope/telescope.nvim', -- optional
-			'ibhagwan/fzf-lua',              -- optional
-			'echasnovski/mini.pick',         -- optional
-			'folke/snacks.nvim',             -- optional
+			'nvim-lua/plenary.nvim',
+			'sindrets/diffview.nvim',
+			'nvim-telescope/telescope.nvim',
 		},
 	},
 	{
