@@ -80,10 +80,9 @@ require('lazy').setup({
 	{
 		'slugbyte/lackluster.nvim',
 		lazy = false,
---		priority = 1000,
---		config = function()
---			vim.cmd([[colorscheme lackluster]])
---		end,
+	},
+	{
+		'zoomlogo/vim-apl',
 	},
 })
 
@@ -98,7 +97,7 @@ vim.o.expandtab = false
 
 vim.o.signcolumn = 'no'
 
-vim.cmd [[syntax enable]]
+vim.cmd [[colo mocha]]
 
 vim.g.mapleader = ' '
 
