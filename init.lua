@@ -96,7 +96,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = false
 
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = 'no'
 
 vim.cmd [[syntax enable]]
 
@@ -109,8 +109,6 @@ vim.keymap.set('n', '<Leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<Leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<Leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<Leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-
-vim.keymap.set('n', '<leader>nd', '<cmd>NoiceDismiss<CR>', {desc = 'Dismiss Noice Message'})
 
 -- https://lsp-zero.netlify.app/blog/lsp-config-overview.html
 vim.diagnostic.config({
@@ -144,6 +142,7 @@ vim.api.nvim_create_user_command('DiagnosticToggle', function()
 		signs = not vt,
 		underline = not vt,
 	}
+	vim.o.signcolumn = not vt and 'yes' or 'no'
 end, { desc = 'Toggle diagnostics' })
 
 -- Set ripgrep as the default grep program
