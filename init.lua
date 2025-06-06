@@ -146,35 +146,8 @@ vim.api.nvim_create_user_command('DiagnosticToggle', function()
 	}
 end, { desc = 'Toggle diagnostics' })
 
--- Fortran files get three space indents and prettify where available
-vim.api.nvim_create_autocmd('FileType', {
-	pattern = 'fortran',
-	callback = function()
-		vim.opt_local.tabstop = 3
-		vim.opt_local.shiftwidth = 3
-		vim.opt_local.expandtab = false
-
-		if vim.fn.executable('fprettify') == 1 then
-			vim.bo.formatexpr = ''
-			vim.bo.equalprg = 'fprettify --silent'
-		end
-	end,
-})
-
 -- Set ripgrep as the default grep program
 if vim.fn.executable('rg') == 1 then
 	vim.o.grepprg = 'rg --vimgrep --smart-case'
 	vim.o.grepformat = '%f:%l:%c:%m'
 end
-
--- Set cmake as the build program where it is possible
-vim.api.nvim_create_autocmd('BufEnter', {
-	callback = function()
-		if vim.fn.filereadable('CMakeLists.txt') == 1 then
-			if vim.fn.executable('cmake') == 1 then
-				vim.o.makeprg = 'cmake --build build'
-				vim.o.errorformat = '%f:%l:%c: %m'
-			end
-		end
-	end,
-})
