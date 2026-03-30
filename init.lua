@@ -34,7 +34,10 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.updatetime = 100
+vim.opt.signcolumn = "no"
 
+-- Highlight todo's just like comments
 vim.api.nvim_set_hl(0, "Todo", { link = "Comment" })
 
 -- Language servers
@@ -47,7 +50,7 @@ vim.diagnostic.config({ virtual_lines = false })
 -- Harper spell checking language server
 vim.lsp.config['harper'] = {
     cmd = { 'harper-ls', '--stdio' },
-    filetypes = { 'markdown', 'text', 'tex', 'typst' },
+    filetypes = { 'markdown', 'tex', 'typst' },
 }
 vim.lsp.enable('harper')
 
@@ -83,3 +86,11 @@ vim.lsp.config['tinymist'] = {
     filetypes = { 'typst' },
 }
 vim.lsp.enable('tinymist')
+
+-- Open into a scratch buffer by default when no arguments were passed
+if vim.fn.argc() == 0 then
+    vim.opt.shortmess:append("I")
+    vim.opt.buftype = "nofile"
+    vim.opt.bufhidden = "hide"
+    vim.opt.swapfile = false
+end
