@@ -9,8 +9,8 @@ vim.api.nvim_set_hl(0, 'Todo', { link = 'Comment' })
 
 vim.pack.add {
     'https://github.com/nvim-treesitter/nvim-treesitter.git',
-    'https://github.com/neovim/nvim-lspconfig',
-    'https://github.com/stevearc/oil.nvim',
+    'https://github.com/neovim/nvim-lspconfig.git',
+    'https://github.com/stevearc/oil.nvim.git',
     'https://github.com/NeogitOrg/neogit.git',
     'https://github.com/nvim-lua/plenary.nvim.git',
     'https://github.com/lewis6991/gitsigns.nvim.git',
