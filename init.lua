@@ -14,11 +14,11 @@ vim.pack.add {
     'https://github.com/NeogitOrg/neogit.git',
     'https://github.com/nvim-lua/plenary.nvim.git',
     'https://github.com/lewis6991/gitsigns.nvim.git',
-    'https://github.com/ggml-org/llama.vim.git',
     'https://github.com/ledger/vim-ledger.git',
 }
-require('oil').setup()
-require('gitsigns').setup()
+require('oil').setup {}
+require('neogit').setup {}
+require('gitsigns').setup {}
 
 vim.lsp.config['*'] = {
     capabilities = { textDocument = { semanticTokens = { multilineTokenSupport = true } } },
