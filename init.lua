@@ -4,18 +4,20 @@ vim.o.expandtab = true
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.updatetime = 100
-vim.o.signcolumn = 'no'
 
 vim.api.nvim_set_hl(0, 'Todo', { link = 'Comment' })
 
 vim.pack.add {
+    'https://github.com/nvim-treesitter/nvim-treesitter.git',
     'https://github.com/neovim/nvim-lspconfig',
     'https://github.com/stevearc/oil.nvim',
     'https://github.com/tpope/vim-fugitive.git',
-    'https://github.com/airblade/vim-gitgutter.git',
+    'https://github.com/lewis6991/gitsigns.nvim.git',
     'https://github.com/ggml-org/llama.vim.git',
-    'https://github.com/ledger/vim-ledger',
+    'https://github.com/ledger/vim-ledger.git',
 }
+require('oil').setup()
+require('gitsigns').setup()
 
 vim.lsp.config['*'] = {
     capabilities = { textDocument = { semanticTokens = { multilineTokenSupport = true } } },
@@ -34,14 +36,15 @@ local function on_jump(diagnostic, bufnr)
 end
 
 vim.keymap.set('n', 'gK', function()
-  local new_config = not vim.diagnostic.config().virtual_lines
-  vim.diagnostic.config({ virtual_lines = new_config })
+    local new_config = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
 vim.diagnostic.config({ virtual_lines = false, jump = { on_jump = on_jump } })
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('clangd')
+vim.lsp.enable('tinymist')
 
 vim.lsp.config['harper_ls'] = {
     cmd = { 'harper-ls', '--stdio' },
