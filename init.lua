@@ -1,9 +1,8 @@
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
-vim.o.number = true
-vim.o.relativenumber = true
 vim.o.updatetime = 100
+vim.o.termguicolors = true
 
 vim.api.nvim_set_hl(0, 'Todo', { link = 'Comment' })
 
@@ -12,11 +11,9 @@ vim.pack.add {
     'https://github.com/neovim/nvim-lspconfig.git',
     'https://github.com/stevearc/oil.nvim.git',
     'https://github.com/tpope/vim-fugitive.git',
-    'https://github.com/lewis6991/gitsigns.nvim.git',
     'https://github.com/ledger/vim-ledger.git',
 }
 require('oil').setup {}
-require('gitsigns').setup {}
 
 vim.lsp.config['*'] = {
     capabilities = { textDocument = { semanticTokens = { multilineTokenSupport = true } } },
