@@ -11,13 +11,11 @@ vim.pack.add {
     'https://github.com/nvim-treesitter/nvim-treesitter.git',
     'https://github.com/neovim/nvim-lspconfig.git',
     'https://github.com/stevearc/oil.nvim.git',
-    'https://github.com/NeogitOrg/neogit.git',
-    'https://github.com/nvim-lua/plenary.nvim.git',
+    'https://github.com/tpope/vim-fugitive.git',
     'https://github.com/lewis6991/gitsigns.nvim.git',
     'https://github.com/ledger/vim-ledger.git',
 }
 require('oil').setup {}
-require('neogit').setup {}
 require('gitsigns').setup {}
 
 vim.lsp.config['*'] = {
