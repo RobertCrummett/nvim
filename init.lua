@@ -11,13 +11,9 @@ vim.pack.add {
     'https://github.com/stevearc/oil.nvim.git',
     'https://github.com/tpope/vim-fugitive.git',
     'https://github.com/ledger/vim-ledger.git',
-    'https://github.com/EdenEast/nightfox.nvim.git',
-    'https://github.com/Mofiqul/vscode.nvim.git',
 }
 
 require('oil').setup {}
-
-vim.cmd [[colorscheme vscode]]
 
 local to_delete = vim.iter(vim.pack.get())
     :filter(function(x) return not x.active end)
