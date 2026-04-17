@@ -13,7 +13,15 @@ vim.pack.add {
     'https://github.com/ledger/vim-ledger.git',
 }
 
-require('oil').setup {}
+require('oil').setup {
+    columns = { 'permissions', 'size', 'mtime' },
+    view_options = { show_hidden = true },
+    git = {
+        add = function(path) return true end,
+        mv  = function(src, dest) return true end,
+        rm  = function(path) return true end,
+    },
+}
 
 local to_delete = vim.iter(vim.pack.get())
     :filter(function(x) return not x.active end)
