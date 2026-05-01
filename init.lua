@@ -27,6 +27,7 @@ local to_delete = vim.iter(vim.pack.get())
     :filter(function(x) return not x.active end)
     :map(function(x) return x.spec.name end)
     :totable()
+
 if #to_delete ~= 0 then
     vim.pack.del(to_delete)
 end
