@@ -1,6 +1,7 @@
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
+vim.o.signcolumn = 'no'
 vim.o.matchpairs = ''
 
 vim.cmd [[colorscheme zellner]]
