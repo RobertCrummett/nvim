@@ -1,8 +1,9 @@
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
-vim.o.signcolumn = 'no'
+vim.o.matchpairs = ''
 
+vim.cmd [[colorscheme zellner]]
 vim.api.nvim_set_hl(0, 'Todo', { link = 'Comment' })
 
 vim.pack.add {
@@ -54,10 +55,6 @@ vim.keymap.set('n', 'gK', function()
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
 vim.diagnostic.config({ virtual_lines = false, jump = { on_jump = on_jump } })
-
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('clangd')
-vim.lsp.enable('tinymist')
 
 vim.lsp.config['harper_ls'] = {
     cmd = { 'harper-ls', '--stdio' },
