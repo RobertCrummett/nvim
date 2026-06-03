@@ -2,14 +2,12 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.signcolumn = 'no'
-vim.o.matchpairs = ''
+vim.o.exrc = true
 
 vim.cmd [[colorscheme zellner]]
 vim.api.nvim_set_hl(0, 'Todo', { link = 'Comment' })
 
 vim.pack.add {
-    'https://github.com/nvim-treesitter/nvim-treesitter.git',
-    'https://github.com/neovim/nvim-lspconfig.git',
     'https://github.com/stevearc/oil.nvim.git',
     'https://github.com/tpope/vim-fugitive.git',
     'https://github.com/ledger/vim-ledger.git',
@@ -25,14 +23,14 @@ require('oil').setup {
     },
 }
 
-local to_delete = vim.iter(vim.pack.get())
-    :filter(function(x) return not x.active end)
-    :map(function(x) return x.spec.name end)
-    :totable()
-
-if #to_delete ~= 0 then
-    vim.pack.del(to_delete)
-end
+-- local to_delete = vim.iter(vim.pack.get())
+--     :filter(function(x) return not x.active end)
+--     :map(function(x) return x.spec.name end)
+--     :totable()
+--
+-- if #to_delete ~= 0 then
+--     vim.pack.del(to_delete)
+-- end
 
 vim.lsp.config['*'] = {
     capabilities = { textDocument = { semanticTokens = { multilineTokenSupport = true } } },
@@ -62,4 +60,13 @@ vim.lsp.config['harper_ls'] = {
     filetypes = { 'markdown', 'tex', 'typst', 'gitcommit' },
     root_markers = { '.harper-dictionary.txt' },
 }
-vim.lsp.enable('harper_ls')
+
+vim.lsp.config['lua_ls'] = {
+    cmd = { 'lua-language-server' },
+    filetypes = { 'lua' },
+}
+
+vim.lsp.config['typst_ls'] = {
+    cmd = { 'tinymist' },
+    filetypes = { 'typst' },
+}
