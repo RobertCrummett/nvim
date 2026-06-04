@@ -4,13 +4,13 @@ vim.o.expandtab = true
 vim.o.signcolumn = 'no'
 vim.o.exrc = true
 
-vim.cmd [[colorscheme zellner]]
 vim.api.nvim_set_hl(0, 'Todo', { link = 'Comment' })
 
 vim.pack.add {
     'https://github.com/stevearc/oil.nvim.git',
     'https://github.com/tpope/vim-fugitive.git',
     'https://github.com/ledger/vim-ledger.git',
+    'https://github.com/nyoom-engineering/oxocarbon.nvim.git',
 }
 
 require('oil').setup {
@@ -69,4 +69,15 @@ vim.lsp.config['lua_ls'] = {
 vim.lsp.config['typst_ls'] = {
     cmd = { 'tinymist' },
     filetypes = { 'typst' },
+}
+
+vim.lsp.config['racket_ls'] = {
+    cmd = { 'racket', '--lib', 'racket-langserver' },
+    filetypes = { 'racket' },
+}
+
+vim.lsp.config['clangd'] = {
+    cmd = { 'clangd' },
+    filetypes = { 'c', 'cpp' },
+    root_markers = { '.clangd', 'compile_commands.json' },
 }
